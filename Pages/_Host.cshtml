@@ -15,6 +15,45 @@
     <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
     <link href="css/site.css" rel="stylesheet" />
     <link href="ContinuousDeployment.styles.css" rel="stylesheet" />
+
+    <script>
+
+        const Perguntar = () => {
+
+            var pergunta = document.querySelector("#pergunta").value;
+            var resposta = document.querySelector(".resposta");
+            var endpoint = 'https://chatbotazure.azurewebsites.net/qnamaker/knowledgebases/950b791d-66fc-48c3-91b7-1366051de444/generateAnswer';
+
+            resposta.innerHTML = '';
+
+            var raw = {
+                "question" : pergunta
+            }
+
+            fetch(endpoint, {
+                method : 'POST',
+                headers : {
+                    'Authorization' : 'e5447907-fc66-407d-a0b5-9f8948714c65',
+                    'Content-Type' : 'application/json'
+                },
+                body : JSON.stringify(raw)
+            })
+            .then(response => response.json())
+            .then(data => {
+
+                if(data.answers != null){
+                    
+                    data.answers.forEach(item => {
+                        resposta.append(item.answer+" \n");
+                    });
+                }
+            })
+            .catch(erro => console.log(erro))            
+
+        }
+
+    </script>
+
 </head>
 <body>
     <component type="typeof(App)" render-mode="ServerPrerendered" />

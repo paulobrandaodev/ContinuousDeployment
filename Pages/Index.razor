@@ -2,6 +2,15 @@
 
 <h1>Seja bem vindo!</h1>
 
-Welcome to your new app.
+<form>
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Faça uma pergunta..." name="pergunta" id="pergunta">
+        </div>
+        <div class="col-auto">
+                <button type="submit" class="btn btn-primary" onclick="event.preventDefault(); Perguntar();">Perguntar</button>
+        </div>
+    </div>
+</form>
 
-<SurveyPrompt Title="How is Blazor working for you?" />
+<p class="resposta" style="margin-top: 30px; color: blue"></p>
